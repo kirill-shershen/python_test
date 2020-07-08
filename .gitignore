@@ -1,6 +1,7 @@
 include/
 Lib/
 Scripts/
+live-static/
 */__pycache__/
 db.sqlite3
 pyvenv.cfg
