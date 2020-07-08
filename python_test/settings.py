@@ -74,9 +74,13 @@ WSGI_APPLICATION = 'python_test.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+DATABASES = {
+    'default': {
+        }
+    }
 if os.environ['HOST'] == 'heroku':
     import dj_database_url
+
     DATABASES['default'] =  dj_database_url.config(default=os.environ.get('DATABASE_URL'))
     DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 else:
