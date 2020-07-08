@@ -1,0 +1,117 @@
+{% extends 'admin/change_form.html' %}
+{% load static %}
+{% block content %}
+    <style type="text/css">
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+        .image {   }
+        div.text_android {
+            position: absolute;
+            /* top: 31.8%;
+            left: 35%; */
+            top: 182px;
+            left: 130px;
+            padding: 1px;
+            border-radius: 5px;
+            height: 54px; 
+            width: 318px;
+            background-color: white;
+            color: #262626;
+        }
+        div.text_android p.title1 {
+            position: relative;
+            margin: 0;
+            margin-left: 5px;
+            text-align: left;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        div.text_android p.text1 {
+            position: relative;
+            margin: 0;
+            /* margin-top: 0;*/
+            margin-left: 5px;             
+            vertical-align: top;
+            text-align: left;
+            font-size: 0.8em;
+        }
+        div.text_ios {
+            position: absolute;
+            top: 389px;
+            left: 138px;
+            padding: 1px;
+            border-radius: 8px;
+            height: 54px; 
+            width: 306px;
+            background-color: white;
+            color: #262626;
+        }
+        div.text_ios p.title2 {
+            position: relative;
+            margin: 0;
+            margin-left: 5px;
+            text-align: left;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        div.text_ios p.text2 {
+            position: relative;
+            margin: 0;
+            /* margin-top: 0;*/
+            margin-left: 5px;             
+            vertical-align: top;
+            text-align: left;
+            font-size: 0.8em;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-7">
+            {{ block.super }}
+            <div class="submit-row">
+                <button type="button" class="btn btn-primary" id="update">Обновить изображение</button>
+            </div>
+        </div>
+        <div class="col-md-4 offset-7 container">
+            <img src="{% static 'notification/img/preview.png'%}" class="image" alt="">
+            <div class="text_android" >
+                <img id="image_android" src="" align="right" height="42" width="42" style="margin-top: 5px; margin-right: 5px;  border-radius: 5px;" alt="">
+                <p class="title1" id="Title"></p>
+                <p class="text1" id="Text" ></p>
+            </div>
+            <div class="text_ios" >
+                <img id="image_ios" src="" height="42" width="42" align="right" style="margin-top: 7px; margin-right: 5px;  border-radius: 5px;" alt="">
+                <p class="title2" id="Title"></p>
+                <p class="text2" id="Text" ></p>
+            </div>            
+        </div>
+    </div>
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+    <script>
+        function UpdatePreview() {
+            $('.title1').empty();
+            $('.title1').append($('#id_title').val());
+            $('.text1').empty();
+            $('.text1').append($('#id_text').val());
+            $('.title2').empty();
+            $('.title2').append($('#id_title').val());
+            $('.text2').empty();
+            $('.text2').append($('#id_text').val());
+            $("#image_android").attr("src",$('#id_picture').val());
+            $("#image_ios").attr("src",$('#id_picture').val());
+        }
+        $('#id_title').keyup(function() {
+            UpdatePreview();
+        });
+        $('#id_text').keyup(function() {
+            UpdatePreview();
+        });
+        $( document ).ready(function() {
+           UpdatePreview();
+        }); 
+        $( "#update" ).click(function() {
+            UpdatePreview();
+        });
+     </script>
+{% endblock %}
